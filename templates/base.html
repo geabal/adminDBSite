@@ -1,0 +1,27 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="KO-kr">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" type="text/css" href="{% static 'bootstrap.min.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'style.css' %}">
+    <title>{% block title %}DB 관리 페이지{% endblock title %}</title>
+</head>
+<body>
+<!--네비게이션 바-->
+{% include "navbar.html" %}
+<!--두번째 줄 네비게이션 바 추가-->
+{% block nav %}
+{% endblock nav %}
+
+<div class="container mt-3">
+    <!-- 기본 템플릿 안에 삽입될 내용 Start -->
+    {% block content %}
+    {% endblock content %}
+    <!-- 기본 템플릿 안에 삽입될 내용 End -->
+</div>
+</body>
+</html>

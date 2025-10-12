@@ -1,41 +1,54 @@
-<!DOCTYPE html>
-<html lang="KO-kr">
-<head>
-    <meta charset="UTF-8">
-    <title>콘텐츠 DB 관리</title>
 
-</head>
-<body>
-<form method="post" enctype="multipart/form-data" action="{% url 'contentAdmin:upload_index' %}" id="upload_form_data">
+{% extends 'base.html' %}
+{% block title %}
+콘텐츠 DB 관리
+{% endblock title %}
+
+{% block nav %}
+{% include "contentAdminNavbar.html" %}
+{% endblock nav %}
+
+{% block content %}
+<form class="row g-3" method="post" enctype="multipart/form-data" action="{% url 'contentAdmin:upload_index' %}" id="upload_form_data">
     {% csrf_token %}
 
-    <div style="margin-bottom: 20px;">
+    <div style="margin-bottom: 20px;" class="form-check">
         <p>업로드할 콜렉션을 선택하세요</p>
 
-        <input type="radio" id="CONTENT" name="collection_name" required>
-        <label for="CONTENT">CONTENT</label><br>
+        <input class="form-check-input" type="radio" id="CONTENT" name="collection_name" required>
+        <label class="form-check-label" for="CONTENT">CONTENT</label><br>
 
-        <input type="radio" id="UNIQUE_CONTENT" name="collection_name">
-        <label for="UNIQUE_CONTENT">UNIQUE_CONTENT</label><br>
+        <input class="form-check-input" type="radio" id="UNIQUE_CONTENT" name="collection_name">
+        <label class="form-check-label" for="UNIQUE_CONTENT">UNIQUE_CONTENT</label><br>
 
-        <input type="radio" id="SUMMARY_INFO" name="collection_name">
-        <label for="SUMMARY_INFO">SUMMARY_INFO</label><br>
+        <input class="form-check-input" type="radio" id="SUMMARY_INFO" name="collection_name">
+        <label class="form-check-label" for="SUMMARY_INFO">SUMMARY_INFO</label><br>
 
-        <input type="radio" id="WEBSITE_DOMAIN" name="collection_name">
-        <label for="WEBSITE_DOMAIN">WEBSITE_DOMAIN</label><br>
+        <input class="form-check-input" type="radio" id="WEBSITE_DOMAIN" name="collection_name">
+        <label class="form-check-label" for="WEBSITE_DOMAIN">WEBSITE_DOMAIN</label><br>
 
         </div>
 
-    <div>
+    <div class="container-sm">
+        <div>
+            <p>업로드할 CSV 파일을 선택해주세요.</p>
+        </div>
+        <div class="input-group" style="width:50%">
+            <input type="file" class="form-control" id="csv_file" name="csv_file" accept=".csv" aria-label="Upload">
+            <button class="btn btn-outline-secondary" type="submit" value="업로드" id="upload_button" disabled >업로드</button>
+        </div>
+    </div>
+    <!--<div>
         <label for="csv_file">업로드할 CSV 파일을 선택해주세요.</label>
         <input type="file" id="csv_file" name="csv_file" accept=".csv">
     </div>
     <input type="submit" value="업로드" id="upload_button" disabled style="margin-top: 15px;">
+    -->
 </form>
 
 <div id="message_area" style="margin-top: 20px;"></div>
-
-</body>
 {% load static %}
 <script src="{% static 'contentAdmin/upload.js' %}"></script>
-</html>
+
+{% endblock content %}
+

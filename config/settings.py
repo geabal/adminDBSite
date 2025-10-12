@@ -139,6 +139,6 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 LOGIN_REDIRECT_URL = '/selectDB'
 SESSION_ENGINE = 'django.contrib.sessions.backends.db'
 SESSION_COOKIE_NAME = 'sessionid'  # 세션 쿠키의 이름
-SESSION_COOKIE_AGE = 120       # 세션 쿠키의 유지 시간 (초 단위, 기본값: 2주, 1209600초)
+SESSION_COOKIE_AGE = 1209600       # 세션 쿠키의 유지 시간 (초 단위, 기본값: 2주, 1209600초)
 SESSION_SAVE_EVERY_REQUEST = True  # 모든 요청 시 세션 저장
 SESSION_EXPIRE_AT_BROWSER_CLOSE = False  # 브라우저가 닫히면 세션을 유지할지 여부

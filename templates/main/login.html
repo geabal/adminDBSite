@@ -3,8 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <title>로그인 페이지</title>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'bootstrap.min.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'style.css' %}">
+
 </head>
 <body>
+<div class="d-flex justify-content-center">
+<div class="login-box border rounded">
     <form method="post" action="{% url 'main:userLogin' %}">
         {% csrf_token %}
         <div class="mb-3">
@@ -19,6 +25,8 @@
         </div>
         <button type="submit" class="btn btn-primary">로그인</button>
     </form>
+</div>
+</div>
 <div id="message_area" style="margin-top: 20px;"></div>
 </body>
 {% load static %}

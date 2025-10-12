@@ -1,0 +1,15 @@
+<nav class="navbar navbar-expand-lg navbar-dark border-bottom">
+    <div class="container-fluid">
+        <ul class="navbar-nav">
+            <li class="nav-item">
+                <a class="navbar-brand fw-semibold" href="{% url 'main:selectDB' %}">DB 관리 페이지</a>
+            </li>
+            {% if user.is_authenticated %}
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'main:userLogout' %}">로그아웃</a>
+            </li>
+            {% endif %}
+        </ul>
+    </div>
+
+</nav>

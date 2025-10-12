@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
 from django.shortcuts import redirect
 from django.contrib.auth.decorators import login_required
 @login_required(login_url='main:login')
@@ -24,3 +24,7 @@ def user_login(request):
         else:
             # 인증 실패 처리
             return render(request, 'login.html', {'error': 'Invalid credentials'})
+
+def user_logout(request):
+    logout(request)
+    return redirect('main:login')
