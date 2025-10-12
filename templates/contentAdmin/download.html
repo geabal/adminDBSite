@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="KO-kr">
+<head>
+    <meta charset="UTF-8">
+    <title>콘텐츠 DB 관리</title>
+</head>
+<body>
+<form method="post" enctype="multipart/form-data" action="{% url 'contentAdmin:download_index' %}" id="upload_form_data">
+    {% csrf_token %}
+
+    <div style="margin-bottom: 20px;">
+        <p>다운로드할 콜렉션을 선택하세요</p>
+
+        <input type="radio" id="CONTENT" name="collection_name" value="CONTENT" required>
+        <label for="CONTENT">CONTENT</label><br>
+
+        <input type="radio" id="UNIQUE_CONTENT" name="collection_name" value="UNIQUE_CONTENT">
+        <label for="UNIQUE_CONTENT">UNIQUE_CONTENT</label><br>
+
+        <input type="radio" id="SUMMARY_INFO" name="collection_name" value="SUMMARY_INFO">
+        <label for="SUMMARY_INFO">SUMMARY_INFO</label><br>
+
+        <input type="radio" id="WEBSITE_DOMAIN" name="collection_name" value="WEBSITE_DOMAIN">
+        <label for="WEBSITE_DOMAIN">WEBSITE_DOMAIN</label><br>
+    </div>
+    <div>
+        <p>쿼리 조건을 입력하세요.</p>
+         <textarea id="mongo_query" rows="10" cols="80" placeholder="여기에 몽고DB 쿼리를 입력하세요."></textarea>
+    <br>
+        <button id="create_file_button">파일 생성</button>
+    </div>
+    <div>
+
+        <button type="button" id="download_file_button" disabled>다운로드</button>
+        <input type="hidden" id="download_url" value="">
+
+    </div>
+
+    <div id="message_area" style="margin-top: 20px;"></div>
+
+</form>
+</body>
+{% load static %}
+<script src="{% static 'contentAdmin/download.js' %}"></script>
+</html>

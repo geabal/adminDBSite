@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="KO-kr">
+<head>
+    <meta charset="UTF-8">
+    <title>로그인 페이지</title>
+</head>
+<body>
+    <form method="post" action="{% url 'main:userLogin' %}">
+        {% csrf_token %}
+        <div class="mb-3">
+            <label for="username">사용자ID</label>
+            <input type="text" class="form-control" name="username" id="username"
+                   value="{{ form.username.value|default_if_none:'' }}">
+        </div>
+        <div class="mb-3">
+            <label for="password">비밀번호</label>
+            <input type="password" class="form-control" name="password" id="password"
+                   value="{{ form.password.value|default_if_none:'' }}">
+        </div>
+        <button type="submit" class="btn btn-primary">로그인</button>
+    </form>
+<div id="message_area" style="margin-top: 20px;"></div>
+</body>
+{% load static %}
+<script src="{% static 'main/login.js' %}"></script>
+</html>

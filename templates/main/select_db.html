@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="KO-kr">
+<head>
+    <meta charset="UTF-8">
+    <title>DB 선택</title>
+    <style>
+        /* CSS로 전체 화면 중앙 정렬 및 버튼 스타일 지정 */
+        body {
+            margin: 0;
+            height: 100vh; /* 뷰포트 전체 높이 */
+            display: flex;
+            justify-content: center; /* 수평 중앙 정렬 */
+            align-items: center;     /* 수직 중앙 정렬 */
+            flex-direction: column;  /* 버튼을 한 줄로 배치하기 위해 사용 */
+            background-color: #f0f0f0;
+        }
+
+        .button-container {
+            display: flex; /* 버튼을 나란히 배치 */
+            gap: 50px;     /* 버튼 사이 간격 */
+        }
+
+        .main-button {
+            /* 버튼 스타일 */
+            padding: 20px 40px;
+            font-size: 24px;
+            text-decoration: none; /* 앵커 태그 밑줄 제거 */
+            color: white;
+            border-radius: 10px;
+            transition: background-color 0.3s;
+        }
+
+        #button-a {
+            background-color: #4CAF50; /* 초록색 */
+        }
+
+        #button-b {
+            background-color: #008CBA; /* 파란색 */
+        }
+
+        .main-button:hover {
+            opacity: 0.8;
+        }
+    </style>
+</head>
+<body>
+ <div class="button-container">
+        <a href="{% url 'contentAdmin:upload_index' %}" id="button-a" class="main-button">
+            콘텐츠 DB 관리
+        </a>
+
+        <a href="{% url 'contentAdmin:upload_index' %}" id="button-b" class="main-button">
+            코퍼스 DB 관리
+        </a>
+ </div>
+</body>
+</html>
