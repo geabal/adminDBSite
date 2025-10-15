@@ -11,8 +11,22 @@ https://docs.djangoproject.com/en/5.2/ref/settings/
 """
 
 from pathlib import Path
-import environ
 import os, sys
+import boto3
+
+# SSM 클라이언트 생성
+ssm = boto3.client('ssm', region_name='ap-northeast-2')  # 리전을 적절히 변경하세요
+
+def get_parameter(parameter_name, isDecrypt=False):
+    try:
+        response = ssm.get_parameter(
+            Name=parameter_name,
+            WithDecryption=isDecrypt  # SecureString 타입의 경우 암호화 해제
+        )
+        return response['Parameter']['Value']
+    except Exception as e:
+        print(f"파라미터 조회 실패: {e}")
+        return None
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -20,17 +34,13 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 APPS_DIR = os.path.join(BASE_DIR, 'apps')
 sys.path.insert(0, APPS_DIR)
 
-env = environ.Env(
-    DEBUG=(bool, True)
-)
-environ.Env.read_env()
-DEBUG = env('DEBUG')
-SECRET_KEY = env('SECRET_KEY')
-DATABASE_URI = env('DATABASE_URI')
-DB_ID = env('DB_ID')
-DB_PASSWORD = env('DB_PASSWORD')
-DB_NAMES = [env('DB1_NAME'), env('DB2_NAME')]
-MEDIA_PATH = env('MEDIA_PATH')
+DEBUG = get_parameter("/TrendAnalysis/adminDBSite/prod/DEBUG") 
+SECRET_KEY = get_parameter("/TrendAnalysis/adminDBSite/prod/SECRET_KEY",True)
+DATABASE_URI = get_parameter("/TrendAnalysis/adminDBSite/prod/DATABASE_URI",True)
+DB_ID =get_parameter("/TrendAnalysis/adminDBSite/prod/DB_ID",True)
+DB_PASSWORD = get_parameter("/TrendAnalysis/adminDBSite/prod/DB_PASSWORD",True)
+DB_NAMES = [get_parameter("/TrendAnalysis/adminDBSite/prod/DB1_NAME"), get_parameter("/TrendAnalysis/adminDBSite/prod/DB2_NAME")]
+MEDIA_PATH = os.path.join(BASE_DIR,get_parameter("/TrendAnalysis/adminDBSite/prod/MEDIA_PATH"))
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.2/howto/deployment/checklist/
@@ -38,7 +48,7 @@ MEDIA_PATH = env('MEDIA_PATH')
 # SECURITY WARNING: don't run with debug turned on in production!
 #DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [".ap-northeast-2.compute.amazonaws.com"]
 
 # Application definition
 
