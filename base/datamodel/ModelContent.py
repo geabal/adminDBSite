@@ -32,8 +32,8 @@ class SUMMARY_INFO(BaseModel):
     content_id : str
     website_domain_id : str = 'none'
     date : Union[str, datetime]= None
-    created_date: datetime = datetime.now()
-    updated_date: datetime = datetime.now()
+    created_date: datetime = Field(default_factory=datetime.now)
+    updated_date: datetime = Field(default_factory=datetime.now)
     summary : str
     doc_type : int
     keyword : List[str] = []
@@ -55,8 +55,8 @@ class UNIQUE_CONTENT(BaseModel):
     unique_content_id :ULID = Field(alias='_id')
     content_id: str
     date : Union[str, datetime] = None
-    created_date: datetime = datetime.now()
-    updated_date: datetime = datetime.now()
+    created_date: datetime = Field(default_factory=datetime.now)
+    updated_date: datetime = Field(default_factory=datetime.now)
     TFIDF_keyword : List[str] = []
     num_sim : int = 0
     sim_id : List[int] = []
@@ -83,8 +83,8 @@ class WEBSITE_DOMAIN(BaseModel):
     num_norm : int = 0  # 정상 문서 개수
     domain_rank : float = 0 # 스팸 도메인일 확률 등을 포함해 계산
     domain_type : int
-    created_date: datetime = datetime.now()
-    updated_date: datetime = datetime.now()
+    created_date: datetime = Field(default_factory=datetime.now)
+    updated_date: datetime = Field(default_factory=datetime.now)
     meta : dict = {}
     status : dict = {'latest_action':'C', 'accessibility':1}
 
