@@ -49,7 +49,8 @@ MEDIA_PATH = os.path.join(BASE_DIR,get_parameter("/TrendAnalysis/adminDBSite/pro
 #DEBUG = True
 
 ALLOWED_HOSTS = [".ap-northeast-2.compute.amazonaws.com",
-                 ".sunnydb.site"
+                 ".sunnydb.site",
+                 ".cluster0.a5yzzjf.mongodb.net",
                  ]
 
 # Application definition

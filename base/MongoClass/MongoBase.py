@@ -1,5 +1,6 @@
 from pymongo import AsyncMongoClient
 from abc import *
+import certifi
 
 # CRUD 동작을 모두 정의하도록 강제하는 추상 클래스 선언
 class MongoBase(metaclass=ABCMeta):
@@ -8,6 +9,7 @@ class MongoBase(metaclass=ABCMeta):
     uri = ''
     client = None
     data_id = None
+
     def __init__(self):
         return
     def login(self,userid, pw):
@@ -15,7 +17,8 @@ class MongoBase(metaclass=ABCMeta):
         self.user_id = userid
         self.password = pw
         self.uri = f"mongodb+srv://{self.user_id}:{self.password}@cluster0.a5yzzjf.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0"
-        self.client = AsyncMongoClient(self.uri)
+        ca = certifi.where() 
+        self.client = AsyncMongoClient(self.uri, tlsCAFile=ca)
         return
 
     @abstractmethod

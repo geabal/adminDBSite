@@ -11,8 +11,8 @@ class CONTENT(BaseModel):
     doc_type: int
     TFIDF_keyword : List[str] = []
     media_URL : List[str] = []
-    created_date : datetime = datetime.now()
-    updated_date : datetime = datetime.now()
+    created_date : datetime = Field(default_factory=datetime.now)
+    updated_date : datetime = Field(default_factory=datetime.now)
     date : Union[str, datetime]= 'None'
     meta : dict = {}
     URL : str
