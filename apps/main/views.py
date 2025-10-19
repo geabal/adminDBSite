@@ -23,7 +23,7 @@ def user_login(request):
             return redirect('main:selectDB')  # 'home'은 login_required가 적용된 페이지여야 합니다.
         else:
             # 인증 실패 처리
-            return render(request, 'login.html', {'error': 'Invalid credentials'})
+            return render(request, 'main/login.html', {'error': 'Invalid credentials'})
 
 def user_logout(request):
     logout(request)

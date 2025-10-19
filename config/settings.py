@@ -42,15 +42,12 @@ DB_PASSWORD = get_parameter("/TrendAnalysis/adminDBSite/prod/DB_PASSWORD",True)
 DB_NAMES = [get_parameter("/TrendAnalysis/adminDBSite/prod/DB1_NAME"), get_parameter("/TrendAnalysis/adminDBSite/prod/DB2_NAME")]
 MEDIA_PATH = os.path.join(BASE_DIR,get_parameter("/TrendAnalysis/adminDBSite/prod/MEDIA_PATH"))
 
-# Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/5.2/howto/deployment/checklist/
 
-# SECURITY WARNING: don't run with debug turned on in production!
-#DEBUG = True
 
 ALLOWED_HOSTS = [".ap-northeast-2.compute.amazonaws.com",
                  ".sunnydb.site",
                  ".cluster0.a5yzzjf.mongodb.net",
+                 "127.0.0.1",
                  ]
 
 # Application definition
