@@ -3,7 +3,7 @@ from datetime import datetime
 from typing import TypedDict, Union, Optional, List
 from ulid import ULID
 class CONTENT(BaseModel):
-    content_id: ULID = Field(alias='_id') #url 주소 사용
+    content_id: str = Field(alias='_id') #url 주소 사용
     website_domain_id: str = 'None'
     title: str = ''
     fulltext: List[str] = []
