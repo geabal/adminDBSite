@@ -12,13 +12,14 @@ class MongoBase(metaclass=ABCMeta):
 
     def __init__(self):
         return
-    def login(self,userid, pw):
+    def login(self,userid, pw, dbip):
         # connect to collection
         self.user_id = userid
         self.password = pw
-        self.uri = f"mongodb+srv://{self.user_id}:{self.password}@cluster0.a5yzzjf.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0"
-        ca = certifi.where() 
-        self.client = AsyncMongoClient(self.uri, tlsCAFile=ca)
+        self.ip = dbip
+        self.uri = f"mongodb://{self.user_id}:{self.password}@{self.ip}:27017/?authSource=admin"
+        self.client = AsyncMongoClient(self.uri)
+
         return
 
     @abstractmethod

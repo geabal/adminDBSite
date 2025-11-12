@@ -11,14 +11,17 @@ from urllib.parse import unquote
 from django.contrib.auth.decorators import login_required
 
 CSV_DIR = os.path.join(settings.MEDIA_PATH, 'tmp')
+
 @login_required(login_url='main:login')
 def upload_index(request):
     #업로드 html 폼 렌더링
     return render(request, 'contentAdmin/upload.html')
+
 def get_mongo_db_collection(collection_name):
     mc = MongoContent(collection_name)
-    mc.login(userid=settings.DB_ID, pw=settings.DB_PASSWORD)
+    mc.login(userid=settings.DB_ID, pw=settings.DB_PASSWORD, dbip=settings.DB_IP)
     return mc
+
 @login_required(login_url='main:login')
 def upload_csv_api(request):
     """

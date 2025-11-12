@@ -16,13 +16,15 @@ class MongoContent(MongoBase):
     def __init__(self, collection_name):
         self.collection_name = collection_name
         return
-    def login(self,userid, pw):
+    '''
+    def login(self,userid, pw, dbip):
         # connect to collection
         self.user_id = userid
         self.password = pw
         self.uri = f"mongodb+srv://{self.user_id}:{self.password}@cluster0.a5yzzjf.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0"
         self.client = AsyncMongoClient(self.uri)
         return
+    '''
     def setCollection(self, collection_name):
         self.collection_name = collection_name
         return

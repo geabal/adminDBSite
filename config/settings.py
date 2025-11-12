@@ -34,19 +34,21 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 APPS_DIR = os.path.join(BASE_DIR, 'apps')
 sys.path.insert(0, APPS_DIR)
 
-DEBUG = get_parameter("/TrendAnalysis/adminDBSite/prod/DEBUG") 
+DEBUG=False
 SECRET_KEY = get_parameter("/TrendAnalysis/adminDBSite/prod/SECRET_KEY",True)
-DATABASE_URI = get_parameter("/TrendAnalysis/adminDBSite/prod/DATABASE_URI",True)
+
+DB_IP = get_parameter("/TrendAnalysis/adminDBSite/prod/MONGO_EC2_PRIVATE_IP",True)
 DB_ID =get_parameter("/TrendAnalysis/adminDBSite/prod/DB_ID",True)
 DB_PASSWORD = get_parameter("/TrendAnalysis/adminDBSite/prod/DB_PASSWORD",True)
 DB_NAMES = [get_parameter("/TrendAnalysis/adminDBSite/prod/DB1_NAME"), get_parameter("/TrendAnalysis/adminDBSite/prod/DB2_NAME")]
+
 MEDIA_PATH = os.path.join(BASE_DIR,get_parameter("/TrendAnalysis/adminDBSite/prod/MEDIA_PATH"))
 
 
 
-ALLOWED_HOSTS = [".ap-northeast-2.compute.amazonaws.com",
+ALLOWED_HOSTS = [
                  ".sunnydb.site",
-                 ".cluster0.a5yzzjf.mongodb.net",
+                 DB_IP,
                  "127.0.0.1",
                  ]
 
