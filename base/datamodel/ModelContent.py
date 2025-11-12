@@ -14,7 +14,6 @@ class CONTENT(BaseModel):
     updated_date : datetime = Field(default_factory=datetime.now)
     published_date : Union[str, datetime]= 'None'
     meta : dict = {}
-    URL : str
     status : dict = {'latest_action':'C', 'accessibility':1}
 
     def dict(self):
